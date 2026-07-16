@@ -606,7 +606,7 @@ button {
     position: fixed;
     inset: 0;
     z-index: 1100;
-    display: flex;
+
     align-items: center;
     justify-content: center;
     opacity: 0;
@@ -640,6 +640,7 @@ button {
     flex-direction: column;
     overflow: hidden;
     border: 1px solid var(--admin-border);
+    margin: auto;
 }
 
 .admin-modal.active .admin-modal-container {

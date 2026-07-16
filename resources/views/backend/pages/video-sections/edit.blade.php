@@ -1,4 +1,4 @@
-@extends('backend.layout.app')
+@extends('backend.layouts.app')
 
 @section('title', 'Edit Video Section')
 
@@ -397,4 +397,4 @@
 
 @endsection
 
-
+

@@ -6,21 +6,22 @@ use App\Http\Controllers\Admin\VideoSectionController;
 use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
-
 /*
 |--------------------------------------------------------------------------
-| Default Route
+| Public Routes
 |--------------------------------------------------------------------------
 */
 
 Route::get('/', function () {
-
     return redirect()->route('admin.login');
-
 });
 
-Route::post('/contact/submit', [ContactController::class, 'submit'])->name('contact.submit');
+// Contact Form
+Route::post('/contact/submit', [ContactController::class, 'submit'])
+    ->name('contact.submit');
 
+// Contact Form Test (Temporary)
+Route::view('/contact-test', 'contact-test');
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +33,6 @@ Route::prefix('admin')
     ->name('admin.')
     ->group(function () {
 
-
         /*
         |--------------------------------------------------------------------------
         | Guest Routes
@@ -41,89 +41,39 @@ Route::prefix('admin')
 
         Route::middleware('guest')->group(function () {
 
-            Route::get(
-                '/login',
-                [AuthController::class, 'showLogin']
-            )->name('login');
+            Route::get('/login', [AuthController::class, 'showLogin'])
+                ->name('login');
 
-
-            Route::post(
-                '/login',
-                [AuthController::class, 'login']
-            )->name('login.submit');
-
+            Route::post('/login', [AuthController::class, 'login'])
+                ->name('login.submit');
         });
-
 
         /*
         |--------------------------------------------------------------------------
-        | Protected Admin Routes
+        | Authenticated Routes
         |--------------------------------------------------------------------------
         */
 
         Route::middleware('auth')->group(function () {
 
+            // Dashboard
+            Route::view('/dashboard', 'backend.pages.dashboard')
+                ->name('dashboard');
 
-            /*
-            |--------------------------------------------------------------------------
-            | Dashboard
-            |--------------------------------------------------------------------------
-            */
+            // Profile
+            Route::put('/profile/update', [ProfileController::class, 'update'])
+                ->name('profile.update');
 
-            Route::get('/dashboard', function () {
+            // Video Sections
+            Route::resource('video-sections', VideoSectionController::class)
+                ->except('show');
 
-                return view('backend.pages.dashboard');
+            // Contact Enquiries
+            Route::get('/contacts', [ContactController::class, 'index'])
+                ->name('contacts.index');
 
-            })->name('dashboard');
-
-
-            /*
-            |--------------------------------------------------------------------------
-            | Profile Settings
-            |--------------------------------------------------------------------------
-            */
-
-            Route::put(
-                '/profile/update',
-                [ProfileController::class, 'update']
-            )->name('profile.update');
-
-
-            /*
-            |--------------------------------------------------------------------------
-            | Video Section CRUD
-            |--------------------------------------------------------------------------
-            */
-
-            Route::resource(
-                'video-sections',
-                VideoSectionController::class
-            )->except('show');
-
-
-            /*
-            |--------------------------------------------------------------------------
-            | Contact Enquiries
-            |--------------------------------------------------------------------------
-            */
-
-            Route::get(
-                '/contacts',
-                [ContactController::class, 'index']
-            )->name('contacts.index');
-
-
-            /*
-            |--------------------------------------------------------------------------
-            | Logout
-            |--------------------------------------------------------------------------
-            */
-
-            Route::post(
-                '/logout',
-                [AuthController::class, 'logout']
-            )->name('logout');
-
+            // Logout
+            Route::post('/logout', [AuthController::class, 'logout'])
+                ->name('logout');
         });
-
     });
