@@ -20,8 +20,8 @@ Route::get('/', function () {
 Route::post('/contact/submit', [ContactController::class, 'submit'])
     ->name('contact.submit');
 
-// Contact Form Test (Temporary)
-Route::view('/contact-test', 'contact-test');
+
+
 
 /*
 |--------------------------------------------------------------------------

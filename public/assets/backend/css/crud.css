@@ -4,33 +4,31 @@
 ========================================================= */
 
 :root {
-    --crud-primary: #a9875d;
-    --crud-primary-dark: #866844;
-    --crud-primary-soft: #f4eee6;
+    --crud-primary: #174c36;
+    --crud-primary-dark: #103b2a;
+    --crud-primary-soft: #eaf0e6;
 
-    --crud-bg: #f6f7f9;
+    --crud-bg: #f5f7f3;
     --crud-card: #ffffff;
 
-    --crud-text: #20242a;
-    --crud-muted: #707783;
-    --crud-border: #e4e7ec;
+    --crud-text: #29352f;
+    --crud-muted: #6d786f;
+    --crud-border: #e4e9e1;
 
-    --crud-success: #16835d;
-    --crud-success-soft: #e9f7f1;
+    --crud-success: #43825f;
+    --crud-success-soft: #edf7f1;
 
-    --crud-danger: #d64545;
-    --crud-danger-soft: #fff0f0;
+    --crud-danger: #c95d54;
+    --crud-danger-soft: #fdf1f0;
 
-    --crud-warning: #ca8520;
-    --crud-warning-soft: #fff6e8;
+    --crud-warning: #dda00a;
+    --crud-warning-soft: #fff8e6;
 
-    --crud-shadow:
-        0 10px 30px rgba(23, 31, 45, 0.06);
+    --crud-shadow: 0 12px 35px rgba(22, 33, 47, 0.07);
 
     --crud-radius: 14px;
     --crud-radius-sm: 9px;
 }
-
 
 /* =========================================================
    PAGE

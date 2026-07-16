@@ -159,24 +159,7 @@
                     </div>
 
 
-                    @if ($videoSection->image)
-
-                        <div class="crud-current-image">
-
-                            <span class="crud-current-image-label">
-                                Current Image
-                            </span>
-
-                            <img
-                                src="{{ asset(
-                                    'storage/' . $videoSection->image
-                                ) }}"
-                                alt="{{ $videoSection->heading }}"
-                            >
-
-                        </div>
-
-                    @endif
+                  
 
 
                     <div class="crud-form-group">
