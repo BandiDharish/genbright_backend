@@ -1,0 +1,670 @@
+/* ============================================
+   Video Sections Management - Professional Styling
+   ============================================ */
+
+/* Page Layout */
+.crud-page {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Page Header */
+.crud-page-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.15);
+    color: white;
+}
+
+.crud-page-header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.crud-page-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 0;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.crud-page-title i {
+    font-size: 1.5rem;
+}
+
+.crud-page-description {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0.5rem 0 0 0;
+}
+
+/* Card Styling */
+.crud-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.crud-card-header {
+    background: linear-gradient(135deg, #f5f7fa 0%, #f1f3f5 100%);
+    padding: 1.5rem;
+    border-bottom: 1px solid #e9ecef;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.crud-card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    color: #2c3e50;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.crud-card-title i {
+    color: #667eea;
+}
+
+.crud-card-badge {
+    background: #667eea;
+    color: white;
+    padding: 0.35rem 0.85rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.crud-card-body {
+    padding: 1.5rem;
+}
+
+/* Table Responsive */
+.crud-table-responsive {
+    overflow-x: auto;
+}
+
+.crud-table-responsive::-webkit-scrollbar {
+    height: 6px;
+}
+
+.crud-table-responsive::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.crud-table-responsive::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+}
+
+.crud-table-responsive::-webkit-scrollbar-thumb:hover {
+    background: #999;
+}
+
+/* Table */
+.crud-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.crud-table thead {
+    background: linear-gradient(135deg, #f8f9fa 0%, #f5f7fa 100%);
+}
+
+.crud-table thead tr {
+    border-bottom: 2px solid #dee2e6;
+}
+
+.crud-table th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: #495057;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.crud-table-th-id {
+    width: 50px;
+    text-align: center;
+}
+
+.crud-table-th-image {
+    width: 100px;
+}
+
+.crud-table-th-heading {
+    width: 30%;
+}
+
+.crud-table-th-video {
+    width: 15%;
+}
+
+.crud-table-th-status {
+    width: 12%;
+}
+
+.crud-table-th-actions {
+    width: 20%;
+    text-align: right;
+}
+
+/* Table Body */
+.crud-table tbody tr {
+    border-bottom: 1px solid #e9ecef;
+    transition: all 0.2s ease;
+}
+
+.crud-table tbody tr:hover {
+    background: rgba(102, 126, 234, 0.05);
+    transform: scale(1.01);
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+}
+
+.crud-table td {
+    padding: 1rem;
+    vertical-align: middle;
+    color: #2c3e50;
+}
+
+.crud-table-td-id {
+    text-align: center;
+}
+
+.crud-table-td-actions {
+    text-align: right;
+}
+
+.crud-badge-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 0.35rem 0.65rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: inline-block;
+    min-width: 30px;
+    text-align: center;
+}
+
+/* Image Preview */
+.crud-image-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+}
+
+.crud-table-image {
+    max-height: 60px;
+    max-width: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.crud-table-image:hover {
+    transform: scale(1.1);
+}
+
+.crud-no-image {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #adb5bd;
+    font-size: 0.9rem;
+}
+
+.crud-no-image i {
+    font-size: 1.2rem;
+}
+
+/* Heading Cell */
+.crud-heading-cell {
+    display: flex;
+    align-items: center;
+}
+
+.crud-table-heading {
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+.crud-no-video {
+    color: #adb5bd;
+    font-size: 0.9rem;
+}
+
+/* Status Badges */
+.crud-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    transition: all 0.2s ease;
+}
+
+.crud-status-active {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+}
+
+.crud-status-inactive {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+}
+
+.crud-status i {
+    font-size: 0.85rem;
+}
+
+/* Table Actions */
+.crud-table-actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+}
+
+/* Buttons */
+.crud-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.crud-btn i {
+    font-size: 0.9rem;
+}
+
+.crud-btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.crud-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
+
+.crud-btn-edit {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+}
+
+.crud-btn-edit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.crud-btn-delete {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+}
+
+.crud-btn-delete:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.crud-btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.crud-btn-secondary:hover {
+    background: #5a6268;
+    transform: translateY(-2px);
+}
+
+.crud-btn-video {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: white;
+}
+
+.crud-btn-video:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+.crud-btn-sm {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+}
+
+.crud-btn-lg {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+}
+
+.crud-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Empty State */
+.crud-empty-state {
+    text-align: center;
+    padding: 2rem;
+}
+
+.crud-empty-state-full {
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.crud-empty-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.crud-empty-content i {
+    font-size: 4rem;
+    color: #dee2e6;
+}
+
+.crud-empty-content h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #495057;
+    margin: 0;
+}
+
+.crud-empty-content p {
+    color: #adb5bd;
+    margin: 0;
+}
+
+/* Pagination */
+.crud-pagination-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #dee2e6;
+}
+
+.crud-pagination {
+    display: flex;
+}
+
+.crud-pagination .pagination {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.crud-pagination .pagination li {
+    display: flex;
+}
+
+.crud-pagination .pagination a,
+.crud-pagination .pagination span {
+    padding: 0.5rem 0.8rem;
+    border-radius: 6px;
+    border: 1px solid #dee2e6;
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.crud-pagination .pagination a:hover {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+.crud-pagination .pagination .active span {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+.crud-pagination .pagination .disabled span {
+    color: #adb5bd;
+    cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .crud-page-header-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .crud-btn-primary {
+        align-self: flex-start;
+    }
+
+    .crud-table th,
+    .crud-table td {
+        padding: 0.75rem;
+        font-size: 0.85rem;
+    }
+
+    .crud-table-th-heading {
+        width: 20%;
+    }
+
+    .crud-table-actions {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .crud-btn-sm {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .crud-page {
+        margin: 0 -1rem;
+    }
+
+    .crud-page-header {
+        border-radius: 0;
+        margin: 0 0 2rem 0;
+    }
+
+    .crud-card {
+        border-radius: 0;
+    }
+
+    .crud-page-title {
+        font-size: 1.25rem;
+    }
+
+    .crud-table {
+        font-size: 0.8rem;
+    }
+
+    .crud-table th,
+    .crud-table td {
+        padding: 0.6rem 0.5rem;
+    }
+
+    .crud-image-preview {
+        height: 50px;
+    }
+
+    .crud-table-image {
+        max-height: 50px;
+    }
+
+    .crud-table-actions {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .crud-btn-sm {
+        padding: 0.35rem 0.6rem;
+        font-size: 0.75rem;
+        width: auto;
+    }
+
+    .crud-table-th-heading {
+        width: 15%;
+    }
+
+    .crud-table-th-video {
+        width: 12%;
+    }
+
+    .crud-empty-content i {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .crud-page-title {
+        font-size: 1rem;
+    }
+
+    .crud-page-description {
+        font-size: 0.85rem;
+    }
+
+    .crud-card-title {
+        font-size: 1rem;
+    }
+
+    .crud-table {
+        font-size: 0.75rem;
+    }
+
+    .crud-table th,
+    .crud-table td {
+        padding: 0.4rem 0.25rem;
+    }
+
+    .crud-btn {
+        padding: 0.3rem 0.5rem;
+        font-size: 0.7rem;
+    }
+
+    .crud-btn-sm {
+        padding: 0.25rem 0.4rem;
+    }
+
+    .crud-table-actions {
+        gap: 0.25rem;
+    }
+
+    .crud-image-preview {
+        height: 40px;
+        width: 100%;
+    }
+}
+
+/* SweetAlert2 Customization */
+.swal2-popup {
+    font-family: "DM Sans", sans-serif;
+}
+
+.swal2-title {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.swal2-html-container {
+    color: #495057;
+}
+
+/* Toastr Customization */
+#toast-container > .toast {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    font-family: "DM Sans", sans-serif;
+    animation: slideInRight 0.3s ease-out;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+#toast-container > .toast-success {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+#toast-container > .toast-error {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+}
+
+#toast-container > .toast-warning {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+#toast-container > .toast-info {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+}
+
+.toast-close-button {
+    opacity: 0.8;
+}
+
+.toast-close-button:hover {
+    opacity: 1;
+}
