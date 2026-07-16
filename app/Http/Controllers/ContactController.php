@@ -78,10 +78,7 @@ class ContactController extends Controller
                 ->send(new UserContactConfirmation($mailData));
 
             // Notification email to administrator
-            $adminEmail = env(
-                'ADMIN_MAIL_ADDRESS',
-                'dharishbandi@gmail.com'
-            );
+            $adminEmail = config('mail.admin_address');
 
             Mail::to($adminEmail)
                 ->send(new AdminContactInquiry($mailData));
