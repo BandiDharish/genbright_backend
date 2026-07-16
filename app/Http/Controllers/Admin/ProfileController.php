@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+
+
 
 class ProfileController extends Controller
 {
@@ -13,7 +16,7 @@ class ProfileController extends Controller
      */
     public function update(Request $request)
     {
-        $user = auth()->user();
+        $user = Auth::user();
 
         $request->validate([
             'email' => [
@@ -57,7 +60,7 @@ class ProfileController extends Controller
             $user->password = Hash::make($request->new_password);
         }
 
-        $user->save();
+       $user->save();
 
         if ($request->wantsJson()) {
             return response()->json([
