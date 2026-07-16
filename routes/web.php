@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\VideoSectionController;
 use Illuminate\Support\Facades\Route;
 
@@ -71,6 +72,18 @@ Route::prefix('admin')
                 return view('backend.pages.dashboard');
 
             })->name('dashboard');
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | Profile Settings
+            |--------------------------------------------------------------------------
+            */
+
+            Route::put(
+                '/profile/update',
+                [ProfileController::class, 'update']
+            )->name('profile.update');
 
 
             /*

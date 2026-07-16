@@ -44,60 +44,6 @@
         </div>
 
 
-        {{-- Success Message --}}
-        @if (session('success'))
-
-            <div class="crud-alert crud-alert-success">
-
-                <div class="crud-alert-icon">
-                    <i class="fas fa-circle-check"></i>
-                </div>
-
-                <div class="crud-alert-content">
-                    <strong>Success</strong>
-                    <p>{{ session('success') }}</p>
-                </div>
-
-                <button
-                    type="button"
-                    class="crud-alert-close"
-                    aria-label="Close"
-                >
-                    <i class="fas fa-times"></i>
-                </button>
-
-            </div>
-
-        @endif
-
-
-        {{-- Error Message --}}
-        @if (session('error'))
-
-            <div class="crud-alert crud-alert-danger">
-
-                <div class="crud-alert-icon">
-                    <i class="fas fa-circle-exclamation"></i>
-                </div>
-
-                <div class="crud-alert-content">
-                    <strong>Error</strong>
-                    <p>{{ session('error') }}</p>
-                </div>
-
-                <button
-                    type="button"
-                    class="crud-alert-close"
-                    aria-label="Close"
-                >
-                    <i class="fas fa-times"></i>
-                </button>
-
-            </div>
-
-        @endif
-
-
         {{-- Content Card --}}
         <div class="crud-card">
 

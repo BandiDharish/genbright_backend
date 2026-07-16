@@ -132,6 +132,7 @@
                                 @enderror"
                             placeholder="Enter the video section heading"
                             maxlength="255"
+                            data-crud-counter-input
                             required
                         >
 
@@ -145,7 +146,7 @@
                             @enderror
 
                             <span class="crud-character-count">
-                                <span id="headingCount">
+                                <span id="headingCount" data-crud-counter>
                                     {{ strlen(old(
                                         'heading',
                                         $videoSection->heading
@@ -190,6 +191,7 @@
                                     crud-invalid
                                 @enderror"
                             id="imageUploadArea"
+                            data-crud-upload-area
                         >
 
                             <input
@@ -198,6 +200,7 @@
                                 name="image"
                                 accept=".jpg,.jpeg,.png,.webp"
                                 class="crud-file-input"
+                                data-crud-image-input
                             >
 
                             <label
@@ -229,6 +232,7 @@
                         <div
                             class="crud-image-preview-box"
                             id="imagePreviewBox"
+                            data-crud-preview-box
                             hidden
                         >
 
@@ -240,6 +244,7 @@
                                     type="button"
                                     class="crud-remove-image"
                                     id="removeImage"
+                                    data-crud-remove-image
                                 >
                                     <i class="fas fa-times"></i>
                                     Remove
@@ -251,6 +256,7 @@
                                 src=""
                                 alt="Selected image preview"
                                 id="imagePreview"
+                                data-crud-preview-image
                             >
 
                         </div>
@@ -370,7 +376,7 @@
                         <button
                             type="submit"
                             class="crud-btn crud-btn-primary"
-                            data-submit-button
+                            data-crud-submit
                             data-loading-text="Updating..."
                         >
                             <i class="fas fa-floppy-disk"></i>
@@ -391,7 +397,4 @@
 
 @endsection
 
-
-@push('scripts')
-    <script src="{{ asset('backend/assets/js/crud-form.js') }}"></script>
-@endpush
+

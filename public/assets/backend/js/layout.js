@@ -203,12 +203,16 @@ async function deleteCrudRecord(button) {
             );
         }
 
-        removeCrudRow(rowId, button);
+        const isLastRow = removeCrudRow(rowId, button);
 
         await showCrudSuccess(
             'Deleted Successfully',
             data.message || 'The record was deleted successfully.'
         );
+
+        if (isLastRow) {
+            window.location.reload();
+        }
     } catch (error) {
         console.error('CRUD delete error:', error);
 
@@ -235,23 +239,25 @@ function removeCrudRow(rowId, button) {
     }
 
     if (!row) {
-        window.location.reload();
-        return;
+        return true;
     }
 
     row.classList.add('crud-row-removing');
 
+    const remainingRows = document.querySelectorAll(
+        '.crud-table tbody tr:not(.crud-empty-row)'
+    );
+
+    const isLastRow = (remainingRows.length <= 1);
+
     window.setTimeout(function () {
         row.remove();
-
-        const remainingRows = document.querySelectorAll(
-            '.crud-table tbody tr:not(.crud-empty-row)'
-        );
-
-        if (!remainingRows.length) {
+        if (!isLastRow && !document.querySelectorAll('.crud-table tbody tr:not(.crud-empty-row)').length) {
             window.location.reload();
         }
     }, 300);
+
+    return isLastRow;
 }
 
 
@@ -412,10 +418,11 @@ function validateAndPreviewCrudImage(
     const maximumSize = 5 * 1024 * 1024;
 
     if (!allowedTypes.includes(file.type)) {
-        showCrudError(
-            'Invalid Image',
-            'Select a JPG, JPEG, PNG or WEBP image.'
-        );
+        if (typeof toastr !== 'undefined') {
+            toastr.error('Select a JPG, JPEG, PNG or WEBP image.', 'Invalid Image');
+        } else {
+            alert('Invalid Image: Select a JPG, JPEG, PNG or WEBP image.');
+        }
 
         clearCrudImagePreview(
             input,
@@ -428,10 +435,11 @@ function validateAndPreviewCrudImage(
     }
 
     if (file.size > maximumSize) {
-        showCrudError(
-            'Image Too Large',
-            'The image must not exceed 5 MB.'
-        );
+        if (typeof toastr !== 'undefined') {
+            toastr.error('The image must not exceed 5 MB.', 'Image Too Large');
+        } else {
+            alert('Image Too Large: The image must not exceed 5 MB.');
+        }
 
         clearCrudImagePreview(
             input,
@@ -457,10 +465,11 @@ function validateAndPreviewCrudImage(
     };
 
     reader.onerror = function () {
-        showCrudError(
-            'Preview Error',
-            'The selected image could not be previewed.'
-        );
+        if (typeof toastr !== 'undefined') {
+            toastr.error('The selected image could not be previewed.', 'Preview Error');
+        } else {
+            alert('Preview Error: The selected image could not be previewed.');
+        }
 
         clearCrudImagePreview(
             input,
