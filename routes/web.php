@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\VideoSectionController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -17,6 +18,8 @@ Route::get('/', function () {
     return redirect()->route('admin.login');
 
 });
+
+Route::post('/contact/submit', [ContactController::class, 'submit'])->name('contact.submit');
 
 
 /*
