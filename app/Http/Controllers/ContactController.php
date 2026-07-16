@@ -4,77 +4,71 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Contact;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Log;
 use App\Mail\UserContactConfirmation;
 use App\Mail\AdminContactInquiry;
-use Exception;
 
 class ContactController extends Controller
 {
     /**
-     * Handle the contact form submission.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     * Display all contacts in the admin dashboard.
+     */
+    public function index()
+    {
+        // Fetch all contacts, ordered by newest first, paginated at 10 items per page
+        $contacts = Contact::latest()->paginate(10);
+
+        return view('backend.pages.contacts.index', compact('contacts'));
+    }
+
+    /**
+     * Validate the form and save data to the contacts table.
      */
     public function submit(Request $request)
     {
-        // 1. Validate the form fields as required
+        // 1. Validate the form fields
         $validated = $request->validate([
-            'full_name'     => 'required|string|max:255',
-            'mobile_number' => 'required|string|max:20',
-            'email_address' => 'required|email|max:255',
-            'message'       => 'nullable|string|max:5000',
+            'name'    => 'required|string|max:255',
+            'phone'   => 'required|string|max:20',
+            'email'   => 'required|email|max:255',
+            'message' => 'nullable|string',
         ]);
 
-        try {
-            // 2. Prepare unified data array for email templates
-            $data = [
-                'name'     => $validated['full_name'],
-                'mobile'   => $validated['mobile_number'],
-                'email'    => $validated['email_address'],
-                'message'  => $validated['message'] ?? null,
-                'datetime' => now()->timezone(config('app.timezone', 'UTC'))->format('Y-m-d H:i:s T'),
-            ];
+        // 2. Save data to the contacts table
+        $contact = Contact::create([
+            'name'    => $validated['name'],
+            'mobile'  => $validated['phone'], // Maps 'phone' form field to 'mobile' table column
+            'email'   => $validated['email'],
+            'message' => $validated['message'] ?? null,
+        ]);
 
-            // 3. Send Email 1 (To User)
-            Mail::to($validated['email_address'])->send(new UserContactConfirmation($data));
+        // 3. Prepare data array for email templates
+        $data = [
+            'name'     => $contact->name,
+            'mobile'   => $contact->mobile,
+            'email'    => $contact->email,
+            'message'  => $contact->message,
+            'datetime' => $contact->created_at->format('Y-m-d H:i:s'),
+        ];
 
-            // 4. Send Email 2 (To Admin)
-            // Recipient is configured in .env (defaults to dharishbandi@gmail.com)
-            $adminEmail = env('ADMIN_MAIL_ADDRESS', 'dharishbandi@gmail.com');
-            Mail::to($adminEmail)->send(new AdminContactInquiry($data));
+        // 4. Send Email to User (receipt confirmation)
+        Mail::to($contact->email)->send(new UserContactConfirmation($data));
 
-            $successMessage = 'Thank you for contacting GenBright. Your enquiry has been received successfully.';
+        // 5. Send Email to Admin (inquiry notification)
+        $adminEmail = env('ADMIN_MAIL_ADDRESS', 'dharishbandi@gmail.com');
+        Mail::to($adminEmail)->send(new AdminContactInquiry($data));
 
-            // 5. Return response based on client preferences (supports AJAX/JSON)
-            if ($request->wantsJson()) {
-                return response()->json([
-                    'success' => true,
-                    'message' => $successMessage
-                ]);
-            }
+        $successMessage = 'Thank you for contacting GenBright. Your enquiry has been received successfully.';
 
-            return back()->with('success', $successMessage);
-
-        } catch (Exception $e) {
-            // 6. Handle errors using try-catch and log the exception with context
-            Log::error('GenBright Contact Form Error: ' . $e->getMessage(), [
-                'exception' => $e,
-                'payload'   => $request->only(['full_name', 'email_address', 'mobile_number'])
+        // 6. Return response based on request type (supports AJAX/React and traditional blade forms)
+        if ($request->expectsJson() || $request->wantsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => $successMessage
             ]);
-
-            $errorMessage = 'We encountered an error while processing your inquiry. Please try again later.';
-
-            if ($request->wantsJson()) {
-                return response()->json([
-                    'success' => false,
-                    'message' => $errorMessage
-                ], 500);
-            }
-
-            return back()->withInput()->with('error', $errorMessage);
         }
+
+        return back()->with('success', $successMessage);
     }
 }
