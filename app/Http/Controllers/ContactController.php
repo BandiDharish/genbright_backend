@@ -92,17 +92,7 @@ class ContactController extends Controller
 
         return response()->json([
             'success' => true,
-
             'message' => 'Thank you for contacting GenBright. Your enquiry has been received successfully.',
-
-            'data' => [
-                'id' => $contact->id,
-                'name' => $contact->name,
-                'phone' => $contact->mobile,
-                'email' => $contact->email,
-                'message' => $contact->message,
-                'created_at' => $contact->created_at,
-            ],
         ], 201);
     }
 }
